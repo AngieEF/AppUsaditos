@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--For all properties see: https://aka.ms/android-menu-resource-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+	<item
+		android:drawable="@color/ColorSplashScreen">
+		<bitmap
+			 android:src="@drawable/logo_mediano"
+			 android:tileMode="disabled"
+			 android:gravity="center"/>
+
+	</item>
+</layer-list>

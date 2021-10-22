@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AppUsaditos.ViewModels"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="AppUsaditos.Views.ProductsView">
+    <ContentPage.BindingContext>
+        <vm:ProductsViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid Margin="20,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="welcome" Grid.Row="0" Grid.Column="0" TextColor="Silver"/>
+                <Label Text="{Binding UserName}" Grid.Row="1" Grid.Column="0" FontSize="20"
+                       FontAttributes="Bold" TextColor="Pink"/>
+
+                <ImageButton Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"
+                             Source="{FontImage FontFamily=RobotoCondensed-Regular,
+                    Size=40,Color=Purple}"
+                            Margin="0,0,10,0" HorizontalOptions="End"/>
+                <Label Text="{Binding UserCartItemsCount}" FontSize="Subtitle"
+                       Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"
+                       HorizontalTextAlignment="End" VerticalTextAlignment="Start"/>
+                <ImageButton Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"
+                             Source="{FontImage FontFamily=RobotoCondensed-Regular,
+                     Size=40,Color=Green}"
+                             Margin="0,0,10,0" HorizontalOptions="End"
+                             Command="{Binding ViewCartCommand}"/>
+                <ImageButton Grid.Row="0" Grid.Column="3" Grid.RowSpan="2"
+                             Source="{FontImage FontFamily=RobotoCondensed-Regular,
+                    Size=40,Color=Red}"
+                             Margin="0,0,10,0" HorizontalOptions="End"
+                             Command="{Binding LogoutCommand}"/>
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"
+                                          />
+                    </Grid.ColumnDefinitions>
+                    <SearchBar Grid.Column="0" Placeholder="search productos"
+                           BackgroundColor="Transparent" HorizontalOptions="Fill" Margin="0,30,-20,0"/>
+                </Grid>
+
+            </Grid>
+
+<!--pruba destacados-->
+
+            <StackLayout>
+                <Label Text="Destacados" TextColor="Black" FontSize="17" Margin="10,115,0,0">
+                </Label>
+                <Frame HeightRequest="170" WidthRequest="110"
+                       BackgroundColor="White" Padding="0"
+                       HasShadow="True" CornerRadius="10"
+                       HorizontalOptions="StartAndExpand" Margin="-2,5,0,0">
+                    <Grid>
+                        <StackLayout>
+                            <Image Source="https://ae01.alicdn.com/kf/H7580ea8479794c06b07afecf92c9637f0/Vestido-de-embarazada-de-invierno-vestido-rosa-tejido-de-mujer-embarazada-Oto-o-e-Invierno-de.jpg_q50.jpg" HeightRequest="350" 
+                                   Aspect="AspectFill" />
+
+                        </StackLayout>
+
+                    </Grid>
+                </Frame>
+
+                <Frame HeightRequest="170" WidthRequest="110"
+                       BackgroundColor="White" Padding="0"
+                       HasShadow="True" CornerRadius="10"
+                       HorizontalOptions="StartAndExpand" Margin="125,-175,0,0">
+                    <Grid>
+                        <StackLayout>
+                            <Image Source="https://i.pinimg.com/736x/eb/12/28/eb122828ef3ec864cf2051754ebb2378.jpg" HeightRequest="200" 
+                                   Aspect="AspectFill" />
+
+                        </StackLayout>
+
+                    </Grid>
+                </Frame>
+
+                <Frame HeightRequest="170" WidthRequest="110"
+                       BackgroundColor="White" Padding="0"
+                       HasShadow="True" CornerRadius="10"
+                       HorizontalOptions="StartAndExpand" Margin="250,-175,18,0">
+                    <Grid>
+                        <StackLayout>
+                            <Image Source="https://www.on24.com.ar/wp-content/uploads/2020/06/Celular-gris.gif" HeightRequest="200"
+                                   Aspect="AspectFill" />
+
+                        </StackLayout>
+
+                    </Grid>
+                </Frame>
+
+
+            </StackLayout>
+
+            <!--cuadraditos-->
+           
+            <CollectionView ItemsSource="{Binding Categories}"
+                            Margin="10,10,10,0"
+                            HeightRequest="125" VerticalOptions="FillAndExpand"
+                            HorizontalScrollBarVisibility="Never"
+                            ItemsLayout="HorizontalList"
+                            SelectionChanged="CollectionView_SelectionChanged"
+                            SelectionMode="Single"
+                            Grid.Row="2">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="0,10,15,0">
+                            <Frame HeightRequest="30" HasShadow="False" BackgroundColor="#F8EBC0" CornerRadius="10"  WidthRequest="30"  >
+                                <Image Source="{Binding ImageUrl}"/>
+                                
+                            </Frame>
+                            <Label Text="{Binding CategoryName}" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="Black"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Label Grid.Row="3" Text="Artículos" FontSize="20"  FontAttributes="Bold"/>
+
+            
+            <CollectionView 
+                            BackgroundColor="White"
+                            Margin="0,20,10,0" VerticalOptions="Start"
+                            VerticalScrollBarVisibility="Never"
+                            Grid.Row="4"
+                            >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Margin="0,15" BackgroundColor="White">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <pancake:PancakeView Grid.Row="0" CornerRadius="20" Margin="0,0,10,0" >
+                                    <Image Source="https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/styles/480/public/media/image/2019/12/samsung-qled-q90r-analisis-opinion_52.jpg?itok=b7iamtV4" HeightRequest="220" Aspect="Fill"/>
+                                </pancake:PancakeView>
+                                <Frame Grid.Row="1" Margin="20,-80,20,70" BackgroundColor="pink" CornerRadius="15"
+                                       HorizontalOptions="End">
+                                    <Label Text="s/. 980" FontSize="Medium"
+                                           FontAttributes="Bold" TextColor="Black" HeightRequest="10"/>
+                                </Frame>
+                                <Label Grid.Row="1" Text="Televisor Sony" FontSize="22" FontAttributes="Bold"
+                                       VerticalTextAlignment="Center"/>
+                                <Image Grid.Row="2" Source="Star" HorizontalOptions="Start" WidthRequest="20"/>
+                                <Label Grid.Row="2" Margin="30,0,0,0" FontSize="15" VerticalOptions="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="bla" FontAttributes="Bold"/>
+                                            <Span Text="bla" TextColor="#a4a7b6"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </Grid>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
